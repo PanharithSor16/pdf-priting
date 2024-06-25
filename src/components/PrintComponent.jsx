@@ -14,7 +14,7 @@ const PrintComponent = forwardRef((props, ref) => {
         <div className='mr-4'> SD MC</div>
         <div className='mr-4'>Connetor</div>
         <div className='mr-10'>JST</div>
-        <div className='mr-4'>0</div>
+        <div className='mr-4'>500</div>
       </div>
       {/* Add more content as needed */}
      </div>
