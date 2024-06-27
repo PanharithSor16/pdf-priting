@@ -2,7 +2,7 @@
 import React, { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import html2pdf from 'html2pdf.js';
-import PrintComponent from './components/PrintComponent';
+import PrintComponent from '../components/PrintComponent';
 
 const Label = () => {
   const componentRef = useRef();
@@ -12,13 +12,22 @@ const Label = () => {
 
   const handleDownloadPdf = () => {
     const element = componentRef.current;
-    html2pdf().from(element).save();
+    const paper = "A6"
+    const opt = {
+        margin: 0,
+        filename: 'document.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'mm', format: paper.toLowerCase(), orientation: 'landscape' },
+      };
+    html2pdf().from(element).set(opt).save();
     handlePrint();
   };
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
-      <PrintComponent  ref={componentRef} />
+            <PrintComponent ref={componentRef}  />
+
       <div className="mt-4 space-x-4">
         <button
           onClick={handlePrint}
